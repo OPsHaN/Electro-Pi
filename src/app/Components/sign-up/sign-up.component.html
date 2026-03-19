@@ -1,0 +1,38 @@
+<div class="login">
+  <div class="login-header">
+    <h1>Create your account</h1>
+    <br>
+    <h4>Fill in your details to get started</h4>
+  </div>
+
+  <div class="login-form">
+
+    <h3>Username:</h3>
+    <input type="text" required [(ngModel)]="username" placeholder="Username">
+    <small *ngIf="NameError" class="text-danger">{{NameError}}</small>
+
+    <h3>Password:</h3>
+    <input type="password" required [(ngModel)]="password" placeholder="Password">
+    <small *ngIf="PasswordError" class="text-danger">{{PasswordError}}</small>
+
+    <h3>Email:</h3>
+    <input type="email" required [(ngModel)]="email" placeholder="Email">
+    <small *ngIf="EmailError" class="text-danger">{{EmailError}}</small>
+
+    <h3>Phone:</h3>
+    <input type="text" required [(ngModel)]="phone" placeholder="Phone Number">
+    <small *ngIf="PhoneError" class="text-danger">{{PhoneError}}</small>
+
+    <br><br>
+
+    <input type="button" value="Sign Up" class="login-button" (click)="signup()"/>
+
+    <br><br>
+
+    <p>
+      Already have an account?
+      <a href="/login"><span class="signup-link" >Login</span></a>
+    </p>
+
+  </div>
+</div>

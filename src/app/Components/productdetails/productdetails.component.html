@@ -1,0 +1,43 @@
+<main *ngIf="!loading">
+<div class="media" *ngIf="productData" >
+        <div class="gallery">
+          <input type="radio" checked="checked" name="select" id="img-tab-1">
+          <label for="img-tab-1" style="background-image: url({{productData.thumbnail}});"></label>
+          <img class="media-object"  src="{{productData.thumbnail}}" border="0">
+        
+          <input type="radio" name="select" id="img-tab-2">
+          <label for="img-tab-2" style="background-image: url({{productData.images[1]}});"></label>
+          <img  class="media-object" [src]="productData.images[1]" border="0" alt="No Picture">
+        
+          <input type="radio" name="select" id="img-tab-3">
+          <label for="img-tab-3" style="background-image: url({{productData.images[2]}});"></label>
+          <img class="media-object" [src]="productData.images[2]" border="0" alt="No Picture">
+          
+          <input type="radio" name="select" id="img-tab-4">
+          <label for="img-tab-4" style="background-image: url({{productData.images[3]}});"></label>
+          <img class="media-object" [src]="productData.images[3]" border="0" alt="No Picture">
+                  </div>
+    <div class="media-body">
+      <h1 class="media-heading">{{productData.title}}</h1>
+      <h3>Price: {{productData.price}} USD</h3>
+      <h3>Brand: {{productData.brand}}</h3>
+      <h3>Category: {{productData.category}}</h3>
+      <h3>Description: {{productData.description}}</h3>
+      <h3>In Stock: {{productData.stock}}</h3>
+      <form class="wrapper">
+        <div class="cart-box">
+          <!-- <div class="qty qty-minus" >-</div>
+          <input id="cartQty" class="qty" [(ngModel)]="productData.quantity" (input)="onInput($event) ; productData.clicked = true;"  value="1"  class="qty" type="number" min="1" size="1">
+          <div class="qty qty-plus" >+</div> -->
+          <input id="cartQty" [(ngModel)]="productData.quantity" (input)="onInput($event) ; productData.clicked = true;"  value="1"  class="qty" type="number" min="1" size="1">
+          <input class="submit" (click)="addToCart(productData) ; productData.clicked = false;"  [disabled]="!productData.clicked || isDisabled" type="submit" value="Add to Cart">
+        </div>
+        
+      </form>
+    </div>
+
+  </div>
+</main>
+  <div class="spinner" *ngIf="loading" >
+    <app-spinner></app-spinner>
+  </div>

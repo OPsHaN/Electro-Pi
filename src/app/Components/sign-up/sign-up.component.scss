@@ -1,0 +1,92 @@
+body {
+  margin: 0px;
+  font-family: "Ubuntu", sans-serif;
+  background-size: 100% 110%;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+a {
+  margin: 0;
+  padding: 0;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.login {
+  margin: 0 auto;
+  max-width: 500px;
+  margin-top: 50px;
+  border: 1px solid #000000;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.login-header {
+  color: rgb(0, 0, 0);
+  text-align: center;
+  margin-top: 10%;
+}
+
+.login-form h3 {
+  text-align: left;
+  margin-left: 40px;
+  color: rgb(0, 0, 0);
+}
+.login-form {
+  box-sizing: border-box;
+  padding-top: 15px;
+  margin: 5% auto;
+  text-align: center;
+}
+.login input {
+  max-width: 400px;
+  width: 80%;
+  line-height: 3em;
+  font-family: "Ubuntu", sans-serif;
+  margin: 1em 2em;
+  border-radius: 5px;
+  border: 2px solid #c0c0c0;
+  outline: none;
+  padding-left: 10px;
+}
+.login-form input[type="button"] {
+  height: 40px;
+  width: 420px;
+  background: #0011ff;
+  border: 1px solid #505050;
+  border-radius: 5px;
+  color: rgb(249, 249, 249);
+  text-transform: uppercase;
+  font-family: "Ubuntu", sans-serif;
+  cursor: pointer;
+}
+
+
+/*Media Querie*/
+@media only screen and (min-width: 150px) and (max-width: 530px) {
+  .login-form h3 {
+    text-align: center;
+    margin: 0;
+  }
+  .sign-up,
+  .no-access {
+    margin: 10px 0;
+  }
+  .login-button {
+    margin-bottom: 0px;
+  }
+}
+
+//////////////////////////
+
+.text-danger {
+  color: red;
+}

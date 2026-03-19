@@ -1,0 +1,84 @@
+<body>
+  <header id="header">
+    <div class="innertube" >
+      <h1>Electro Pi / Products</h1>
+    </div>
+  </header>
+  <div id="wrapper">
+    <main *ngIf="!loading">
+      <div id="content">
+        <div class="innertube">
+          <main class="grid">
+            <article *ngFor="let prd of productList; trackBy: trackByFn let i = index">
+              <div class="discount">-{{prd.discountPercentage}}%</div>
+                <img class="thum"[src]="prd.thumbnail" routerLink="/details/{{prd.id}}" alt="Sample photo" />
+              <div class="text">
+                <h3>{{ prd.title }}</h3>
+                <h4>{{prd.price}} : USD</h4>
+                <p [ngClass]="{'limitTextHeight': isReadMore}">
+                {{prd.description}}
+                </p>
+                <h5>Brand: {{prd.brand}}</h5>
+                <h5>Category: {{prd.category}}</h5>
+                <h5>In Stock: {{prd.stock}}</h5>
+                <h6 class="rate"><span class="hint-star star">
+                  <i class="fa fa-star" aria-hidden="true"></i>
+                </span>{{prd.rating}}</h6>
+                <!-- <button class="btn" *ngIf="!addButton" (click)="addButton = true" >Add to cart</button> -->
+                <!-- <div class="cart-box" *ngIf="addButton"> -->
+                  <div class="cart-box">
+                  <!-- <div class="qty qty-minus" >-</div> -->
+                  <input id="cartQty" [(ngModel)]="prd.quantity" (input)="onInput($event) ; prd.clicked = true;"  value="1"  class="qty" type="number" min="1" size="1">
+                  <!-- <div class="qty qty-plus" >+</div> -->
+                  <!-- <input class="submit" (click)="addToCart(prd) ; addButton = false" [disabled]="isDisabled " type="submit" value="Add to Cart"> -->
+                  <input class="submit" (click)="addToCart(prd) ; prd.clicked = false;"  [disabled]="!prd.clicked || isDisabled" type="submit" value="Add to Cart">
+                </div>
+              </div>
+            </article>
+          </main>
+        </div>
+      </div>
+    </main>
+    <div class="spinner" *ngIf="loading" >
+      <app-spinner></app-spinner>
+    </div>
+    <nav id="nav">
+      <div class="innertube">
+        <h4>Products</h4>
+        <div class="check" (change)="getFilter($event)">
+          <input type="radio" class="form-check-input" checked id="all" value="all" name="cat"/>
+          <label class="form-check-label" for="all">All</label>
+        </div>
+        <div class="form-check" *ngFor="let cat of categoryList" (change)="getFilter($event)">
+          <input type="radio" class="form-check-input" id="cat" value="{{cat.slug}}" name="cat"/>
+          <label class="form-check-label" for="cat">{{cat.name}}</label>
+        </div>
+      </div>
+    </nav>
+  </div>
+
+  <footer id="footer">
+    <div class="innertube">
+      <table class="pagination">
+        <tr>
+          <td>
+            <button class="btn" (click)="getProducts(currentpageIndex * limitItems , 0)">
+              {{ "<<" }}
+            </button>
+          </td>
+          <td *ngFor="let pagenumber of pagesnumbers">
+            <button class="btn" (click)="getProducts(currentpageIndex * limitItems , pagenumber - 1 )
+              " [style.background-color]="pagenumber - 1 == currentpageIndex ? 'cyan' : 'gray'">
+              {{pagenumber}}
+            </button>
+          </td>
+          <td>
+            <button class="btn" (click)="getProducts(currentpageIndex * pagesnumbers[pagesnumbers.length - 1], pagesnumbers[pagesnumbers.length - 1] - 1)">
+              {{ ">>" }}
+            </button>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </footer>
+</body>

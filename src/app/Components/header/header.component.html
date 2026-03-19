@@ -1,0 +1,35 @@
+<header>
+    <section>
+        <!-- MAIN CONTAINER -->
+        <div id="container">
+            <!-- SHOP NAME -->
+            <div id="shopName">
+                <img src="/assets/ElectroPi.png" style="width:150px"/></div>
+                <!-- COLLCETIONS ON WEBSITE -->
+                <div id="collection">
+                    <a routerLink="/home">Home</a>
+                    <a routerLink="/products">Products</a>
+                </div>
+                <!-- SEARCH SECTION -->
+                <div id="search" [hidden]="!isuserLogged" >
+                    <i class="fa fa-search search" (click)="getSearchProduct(prdocutInput.value)"></i>
+                    <input type="text" id="input"(keyup)="searchProduct($event)" (blur)="hideSearch()" name="searchBox" placeholder="Search" (keydown.enter)="getSearchProduct(prdocutInput.value)" #prdocutInput />
+                    <ul class="suggested">
+                        <li *ngFor="let item of productList">
+                          <a>
+                            {{item.title}}
+                          </a>
+                        </li>
+                      </ul>
+                </div>
+                <!-- USER SECTION (CART AND LOG IN) -->
+                <div id="user" >
+                    <a routerLink="/cart" [hidden]="!isuserLogged"> <i class="fa fa-shopping-cart addedToCart"><div id="badge">{{totalItems}}</div></i></a>
+                    <a routerLink="#" [hidden]="!isuserLogged">Welcome <i class="fa fa-user"></i> : <b >{{welcomeUser}}</b></a>
+                    <a routerLink="/" (click)="logout()" [hidden]="!isuserLogged"><i class="fa fa-sign-out"></i> Logout</a>
+                </div>
+
+
+        </div>
+    </section>
+</header>

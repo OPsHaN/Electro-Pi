@@ -1,0 +1,44 @@
+<div class="login">
+  <div class="login-header">
+    <h1>Log in to your account</h1>
+    <br />
+    <h4>Welcome back ! Please Enter Your Details</h4>
+  </div>
+  <div class="login-form">
+    <h3>Username:</h3>
+    <input
+      type="text"
+      required
+      #name
+      placeholder="Username"
+      (change)="checkname(name.value)"
+      name="username"
+      [(ngModel)]="username"
+    /><br />
+    <small *ngIf="NameError" class="text-danger">{{ NameError }}</small>
+    <h3>Password:</h3>
+    <input
+      type="password"
+      required
+      #pass
+      placeholder="Password"
+      (change)="checkpass(pass.value)"
+      name="password"
+      [(ngModel)]="password"
+    />
+    <small *ngIf="PasswordError" class="text-danger">{{ PasswordError }}</small>
+    <br />
+    <br />
+    <input type="button" value="Login" class="login-button" (click)="login()" />
+    <br />
+    <div class="demo-credentials">
+      <p><strong>Demo Account:</strong></p>
+      <p>Username: <b>emilys</b></p>
+      <p>Password: <b>emilyspass</b></p>
+    </div>
+    <p>
+      Don't have an account?
+      <a href="/signup"><span class="signup-link">Sign up</span></a>
+    </p>
+  </div>
+</div>

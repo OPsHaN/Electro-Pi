@@ -1,0 +1,85 @@
+<div class="wrapper">
+    <div class="box" *ngIf="cartProduct.length ==0">
+    <h1>Your Cart is Empty</h1>
+    <i class="fa far fa-shopping-cart fa-5x"></i>
+     <p>Add something to make me happy :)</p>
+     <br>
+    <p><a routerLink="/products">Continue Shopping!</a></p>
+    </div>
+
+
+    <div class="box" *ngIf="cartProduct.length !=0" >
+          <div class="cart" >
+            <div class="container">
+              <div class="grid_12">
+                <h1>Your Cart have {{cartProduct.length}} Product</h1>
+              </div>
+              <ul class="items">
+                <li class="grid_4 item" *ngFor="let item of cartProduct let i = index" >
+                  <div (click)="removeProduct(i)" class="btn-remove">
+                    <i class="fa fa-trash"></i>
+                  </div>
+                  <div class="preview">
+                    <img [src]="item.thumbnail" />
+                  </div>
+                  <div class="details">
+                    <h3>
+                      {{ item.title }}
+                    </h3>
+                    <p>{{item.description}}</p>
+                    <h3>Price: {{item.price}}:USD</h3>
+
+                  </div>
+                  <div class="inner_container">
+          
+                    <div class="col_1of2 align-center picker">
+                      <p>
+                        <a (click)="addAmount(i)" class="btn-quantity plus">
+                          <i class="fa fa-plus"></i>
+                        </a></p>
+                      <div class="col_1of2 quantity-text">
+                        <input  class="quantity_field" name="quantity" (change)="detectChange()"  [(ngModel)]="item.quantity" value="1"  min="1"  size="1"/>
+                      </div>
+                      <p>
+                        <a (click)="minsAmount(i)" class="btn-quantity plus" >
+                          <i class="fa fa-minus"></i>
+                        </a></p>
+                    </div>
+                    <p><span class="current_quantity">{{item.price * item.quantity}}:USD</span></p>
+
+                  </div>
+                </li>
+              </ul> 
+              <div class="grid_12 summary">
+                <div class="inner_container">
+                  <div class="summary-content">
+                  <div class="col_1of2">
+                    <div class="total">
+                      <span class="amount">Total: {{grandTotal}}$</span>
+                    </div>
+                  </div>
+                  </div>
+                  <div class="btn-summary">
+                    <a (click)="emptyCart()" class="btn-checkout btn-empty">Empty Cart</a>
+
+                    <a routerLink="/products" class="btn-checkout btn-reverse">Continue Shopping</a>
+          
+                    <a routerLink="#" (click)="dialog.showModal()" class="btn-checkout">Checkout</a>
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<!-- open dialog -->
+          <dialog #dialog>
+            <div id="paypalButton">
+              
+            </div>
+            <div>
+              <button (click)="dialog.close()">Close</button>
+            </div>
+          </dialog>
+<!-- open dialog -->
+        </div>
+    </div>
